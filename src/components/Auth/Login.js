@@ -1,9 +1,28 @@
-import React from 'react'
+import React, {useState} from 'react'
 import loginImage from '../../assets/images/login.svg'
 import './Auth.scss'
+import axios from "axios";
 import {Link} from "react-router-dom";
 
 const Login = () => {
+
+    const [email, setEmail] = useState('johndoe@gmail.com');
+    const [password, setPassword] = useState('secret');
+
+    const submitForm = (e) => {
+        e.preventDefault()
+
+        axios.post('http://127.0.0.1:3001/login', {email, password})
+            .then(res => {
+                console.log("res", res)
+            })
+            .catch(err => {
+                console.log("err",err )
+            })
+
+        console.log(email, password)
+    }
+
     return (
         <div id='auth-container'>
             <div id='auth-card'>
@@ -15,14 +34,24 @@ const Login = () => {
                     <div id='form-section'>
                         <h2>Welcome back</h2>
 
-                        <form action="">
+                        <form onSubmit={submitForm}>
 
                             <div className='input-field mb-1'>
-                                <input placeholder='Email'/>
+                                <input
+                                    onChange={e => setEmail(e.target.value)}
+                                    value={email}
+                                    required='required'
+                                    type='text'
+                                    placeholder='Email'/>
                             </div>
 
                             <div className='input-field mb-2'>
-                                <input placeholder='Password'/>
+                                <input
+                                    onChange={e => setPassword(e.target.value)}
+                                    value={password}
+                                    required='required'
+                                    type='password'
+                                    placeholder='Password'/>
                             </div>
 
                             <button>Login</button>
