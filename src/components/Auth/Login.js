@@ -1,9 +1,7 @@
 import React, {useState} from 'react'
 import loginImage from '../../assets/images/login.svg'
 import './Auth.scss'
-import axios from "axios";
 import {Link} from "react-router-dom";
-import AuthService from "../../services/authService"
 
 import {useDispatch} from "react-redux";
 import {login} from '../../store/actions/auth'
@@ -20,19 +18,6 @@ const Login = ({history}) => {
 
         dispatch(login({email, password}, history))
 
-        //props.history
-
-        // AuthService.login({email, password}).then(res => console.log(res))
-
-        // axios.post('http://localhost:3001/login', {email, password})
-        //     .then(res => {
-        //         console.log("res", res)
-        //     })
-        //     .catch(err => {
-        //         console.log("err",err )
-        //     })
-
-        //console.log({email,password})
     }
 
     return (

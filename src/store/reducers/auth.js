@@ -1,4 +1,5 @@
 import {LOGIN} from "../actions/auth";
+import {REGISTER} from "../actions/auth";
 
 const initialState = {
     user: {},
@@ -13,14 +14,21 @@ const authReducer = (state = initialState, action) => {
     switch (type) {
         case LOGIN:
             return {
-                ...initialState,
+                ...state,
+                user: payload,
+                token: payload.token,
+                isLoggedIn: true
+            }
+        case REGISTER:
+            return {
+                ...state,
                 user: payload,
                 token: payload.token,
                 isLoggedIn: true
             }
 
         default:
-            return initialState
+            return state
     }
 }
 
