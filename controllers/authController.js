@@ -8,8 +8,6 @@ exports.login = async (req, res) => {
 
     try {
 
-        // const secret = require('crypto').randomBytes(64).toString('hex')
-
         // find the user
         const user = await User.findOne({
             where: {
@@ -40,9 +38,6 @@ exports.login = async (req, res) => {
 }
 
 exports.register = async (req, res) => {
-
-
-
     try {
 
         const user = await User.create(req.body)
